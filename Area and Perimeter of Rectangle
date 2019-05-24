@@ -1,0 +1,63 @@
+(define (make-point x y) (cons x y))
+(define (x-point c) (car c))
+(define (y-point c) (cdr c))
+
+(define (make-segment a b) (cons a b))
+(define (start-segment s) (car s))
+(define (end-segment s) (cdr s))
+
+(define (make-rectangle a b)(cons a b))
+(define (a-side s) (car s))
+(define (b-side s) (car s))
+
+(define (a-x1 rect)
+     (x-point (start-segment (a-side rect))))
+
+(define (a-y1 rect)
+     (y-point (start-segment (a-side rect))))
+
+(define (a-x2 rect)
+     (x-point (end-segment (a-side rect))))
+
+(define (a-y2 rect)
+     (y-point (end-segment (a-side rect))))
+
+(define (b-x1 rect)
+     (x-point (start-segment (b-side rect))))
+
+(define (b-y1 rect)
+     (y-point (start-segment (b-side rect))))
+
+(define (b-x2 rect)
+     (x-point (end-segment (b-side rect))))
+
+(define (b-y2 rect)
+     (y-point (end-segment (b-side rect))))
+
+(define (a rect)
+    (sqrt (+ (* (- (a-x2 rect) (a-x1 rect)) (- (a-x2 rect) (a-x1 rect)))
+             (* (- (a-y2 rect) (a-y1 rect)) (- (a-y2 rect) (a-y1 rect))))))
+
+(define (b rect)
+    (sqrt (+ (* (- (b-x2 rect) (b-x1 rect)) (- (b-x2 rect) (b-x1 rect)))
+             (* (- (b-y2 rect) (b-y1 rect)) (- (b-y2 rect) (b-y1 rect))))))
+
+
+(define (area rect)
+  (* (a rect) (b rect)))
+
+(define (perimeter rect)
+  (* 2 (+ (a rect) (b rect)))) 
+
+//test
+(define a-p (make-point 0 0))
+(define b-p (make-point 0 4))
+(define c-p (make-point 4 4))
+
+(define ab (make-segment a-p b-p))
+(define bc (make-segment b-p c-p))
+
+(define rect (make-rectangle ab bc))
+
+(perimeter rect)
+(area rect)
