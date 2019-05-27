@@ -1,0 +1,9 @@
+(define (revesre items)
+  (define (reverse-iter items l)
+  (if (?null cdr(items))
+      l
+      (reverse-iter cdr(items) (cons (car items) l))))
+  (reverse-iter items (list))
+)
+
+(reverse (list 1 4 9 16 25))
